@@ -1,42 +1,79 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
+.first-content {
+  display: grid;
+  justify-content: flex-start;
+  align-items: start;
+  gap: 0.8rem;
+}
+
+.search-tab {
+  display: flex;
+}
+
+.btn-one {
+  height: 2rem;
+  width: 7rem;
+  color: aliceblue;
+  background-color: gray;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.Add-product {
+  display: grid;
+  flex-direction: column;
+}
+.btn-two {
+  height: 2rem;
+  width: 10rem;
+  background-color: yellow;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.btn-three {
+  height: 2rem;
+  width: 15rem;
+  color: aliceblue;
+  background-color: gray;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.btn-four {
+  height: 2rem;
+  width: 10rem;
+  background-color: yellow;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+tr {
+  height: 75px;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
   text-align: center;
+  padding: 8px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.img{
+  height: 5rem;
+  width: 5rem;
 }

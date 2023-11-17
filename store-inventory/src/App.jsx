@@ -1,67 +1,94 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { IoSearchOutline } from "react-icons/io5";
+import { useEffect, useState } from "react";
+import "./App.css";
+import { IoSearch } from "react-icons/io5";
+import { FaRegEye } from "react-icons/fa";
+import { PiNotePencil } from "react-icons/pi";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [data, setData] = useState([]);
+
+  const getProduct = () => {
+    fetch("https://fakestoreapi.com/products")
+      .then((res) => res.json())
+      .then((res) => setData(res));
+  };
+
+  useEffect(() => {
+    getProduct();
+  }, []);
+
+  console.log(data);
 
   return (
     <div className="container">
-
-   <div className="first-content">
-   <h1>Store Inventory</h1>
-  <div className="search">
-    <div className="search-tab">
-  <IoSearchOutline /> 
-  <input type="text" placeholder='search for title'/>
-  </div>
-  </div>
-  <button className='btn-one'>Add product</button>
-  <h3>Total: 20 products</h3>
-  </div>
-
-<hr></hr>
-
-  <div className="list-content">
-    <div className="title">
-      <span className='names'>#</span>
-      <span className='names'>Title</span>
-      <span className='names'>Category</span>
-      <span className='names'>Price</span>
-      <span className='names'>Image</span>
-      <span className='names'>Check</span>
-      <span className='names'>Update</span>
-      <span className='names'>Delete</span>   
+      <div className="first-content">
+        <h1>Store Inventory</h1>
+        <div className="search">
+          <div className="search-tab">
+          <button onClick={() => {}}><IoSearch /></button> 
+            <input type="text" placeholder="search for title" />
+          </div>
+        </div>
+        <button className="btn-one">Add product</button>
+        <h3>Total: 20 products</h3>
       </div>
-  </div>
 
-  <hr/>
- 
-  <div className="Add-product">
-    <h2>ADD PRODUCT</h2>
-    <input type="text" placeholder='Title'/>
-    <input type="text" placeholder='Description' />
-    <input type="text" placeholder='Category'/>
-    <input type="text" placeholder='price'/>
-    <input type="text" placeholder='Image URL'/>
-    <button className='btn-two'>Add product</button>
-    <button className='btn-three'>Go Back to Inventory</button>
-  </div>
+      <hr></hr>
 
-  <div className="edit-product">
-   <h2>EDIT PRODUCT</h2>
-   <input type="text" placeholder=''/>
-   <input type="text" placeholder=''/>
-   <input type="text" placeholder=''/>
-   <input type="text" placeholder=''/>
-   <input type="text" placeholder=''/>
-   <button className='btn-four'>Update Product</button>
-  </div>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Check</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        {/* need to map */}
+        <tbody>
+          {data.map((item) => {
+            const { id, title, price, category, image } = item;
+            return (
+              <tr>
+                <td>{id}</td>
+                <td>{title}</td>
+                <td>{category}</td>
+                <td>{price}</td>
+                <td><img className="img" src={image} alt="" /></td>
+                <td>
+                  <button onClick={() => {}}><FaRegEye /></button>
+                </td>
+                <td>
+                  <button onClick={() => {}}><PiNotePencil /></button>
+                </td>
+                <td>
+                  <button onClick={() => {}}><RiDeleteBin5Line /></button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
 
-   </div>
-  )
+      <hr />
+      {/* dialog */}
+      <div className="Add-product">
+        <h2>ADD PRODUCT</h2>
+        <input type="text" placeholder="Title" />
+        <input type="text" placeholder="Description" />
+        <input type="text" placeholder="Category" />
+        <input type="text" placeholder="price" />
+        <input type="text" placeholder="Image URL" />
+        <button className="btn-two">Add product</button>
+        <button className="btn-three">Go Back to Inventory</button>
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
